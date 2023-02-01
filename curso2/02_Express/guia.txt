@@ -3,6 +3,12 @@ Primeiro passo crie seu packge.
 
 SEGUNDO passo installe o express.
     npm install express --save
+*****Para o servidor ficar reiniciando automático, basta instalar o nodmon no projeto
+    npm install nodemon -g     ->para instalar de forma global
+    npm install nodemom --save -> para instalar localmente
+
+    comando para ele rodar o servidor com carregamento automático:
+    nodemon index.js
 
 TERCEIRO passo crie um index.js e importe o express.
     const express = require("express");
@@ -16,6 +22,8 @@ QUINTO passo crie uma rota, neste caso um get.
     de requisição e resposta
 
     app.get("/", function(req,res){
+        res.send("bem-vindo"); -> envia a resposta, * Só pode enviar a resposta uma vez,
+                                  se deixar de enviar a rota fica congelada.
         
     });
 
