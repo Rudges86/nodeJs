@@ -1,0 +1,30 @@
+Primeiro passo crie seu packge.
+    npm init
+
+SEGUNDO passo installe o express.
+    npm install express --save
+
+TERCEIRO passo crie um index.js e importe o express.
+    const express = require("express");
+
+QUARTO passo crie uma copia do express, que irá carregar todo o express em uma variável, ou seja inicia o express.
+
+    const app = express();
+
+QUINTO passo crie uma rota, neste caso um get.
+    Crie um função que sera executada toda vez que a rota for chamada, nela deve ter o parâmetro
+    de requisição e resposta
+
+    app.get("/", function(req,res){
+        
+    });
+
+Último passo crie a inicialização do servidor.
+    primeiro parâmetro é a porta que ele ira rodar, o segundo é para caso ele retorne um erro
+    app.listen(4000,function(erro){
+        if(erro){
+            console.log(erro)
+        }else{
+            console.log("Servidor iniciado ")
+        }
+    })
