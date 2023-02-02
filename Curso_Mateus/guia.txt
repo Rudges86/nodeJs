@@ -127,4 +127,53 @@ const server = http.createServer((req,res)=>{
         }).listen(porta,()=>{
         console.log(`Servidor rodando em: http://localhost:${porta}`);
     })
+07 → Atualizando arquivos
 
+  const fs = require("fs");
+        const http =  require("http");
+        const porta = 3000;
+
+        const server = http.createServer((req,res)=>{
+
+        const urlInfo = require("url").parse(req.url,true); //importe da url, e lendo a url
+        const nome = urlInfo.query.nome; //lendo o parâmetro
+
+        if(!nome){
+            fs.readFile("index.html",(error,data)=>{
+                res.writeHead(200,{"Content-Type":"text/html"}) //renderizando o html já criado
+                res.write(data);
+                return res.end();
+                })
+        }else{
+            **************** O pulo do gato está aqui,
+
+            →Crie uma const com o que vai receber o query e adicionado o a quebra de linha←
+            const nameNewLine = nome + "\r\n";
+
+            →Substitua o fs.writeFile por fs.appendFile←
+            //fs.appendFile("arquivo.txt",nome, .....
+            → Substitua o nome pela const criada ←
+            fs.appendFile("arquivo.txt",nameNewLine, function (err,data){ //criando e escrevendo no arquivo.txt
+                //Detalhe, toda vez ele irá substituir o arquivo e escrever por cima.
+                //Detalhe ele não aceita arrow function, tem que passar o nome function mesmo
+                res.writeHead(302,{
+                    Location:"/" //devolvendo para a mesma página
+                })
+                    return res.end();
+                })
+            }
+
+        }).listen(porta,()=>{
+        console.log(`Servidor rodando em: http://localhost:${porta}`);
+    })
+
+08 → Removendo arquivos
+    const fs = require("fs");
+
+    fs.unlink('arquivo.txt',function(error){ → esse é o cara responsável por remover o arquivo, mas só remove se ele existir
+        if(error){
+            console.log(error);
+            return ;
+        }
+        console.log("Arquivo removido");
+    })
