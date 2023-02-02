@@ -177,3 +177,19 @@ const server = http.createServer((req,res)=>{
         }
         console.log("Arquivo removido");
     })
+
+09 → Renomeando
+const fs = require("fs");
+
+const arquivoAntigo = "arquivo.txt" ;
+const arquivoNovo = "novoArquivo.txt";
+
+*****Bem simples, é só isso aqui que faz para renomear
+      ↓         ↓               ↓  
+fs.rename(arquivoAntigo,arquivoNovo,function(error){
+    if(error){
+        console.log(error);
+        return;
+    }
+    console.log(`O arquivo ${arquivoAntigo} foi renomeado para ${arquivoNovo}`);
+});

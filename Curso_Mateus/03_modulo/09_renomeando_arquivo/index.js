@@ -3,7 +3,7 @@ const fs = require("fs");
 const arquivoAntigo = "arquivo.txt" ;
 const arquivoNovo = "novoArquivo.txt";
 
-fs.rename("arquivo.txt","novoArquivo.txt",function(error){
+fs.rename(arquivoAntigo,arquivoNovo,function(error){
     if(error){
         console.log(error);
         return;
