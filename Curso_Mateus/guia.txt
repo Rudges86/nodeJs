@@ -1,0 +1,49 @@
+1- Simples aplicação web básico
+const http = require("http");
+
+const porta = 3000;
+
+const server = http.createServer((req,res)=>{
+    res.write("Olá HTTP");
+    res.end();
+})
+
+server.listen(porta,()=>{
+    console.log(`Servidor iniciado na porta: http://localhost:${porta}`)
+})
+
+2- Enviando html na resposta, e enviando código de status
+    const http = require("http");
+    const porta = 3000;
+
+    const server = http.createServer((req,res)=>{
+        res.statusCode = 200;  -> aqui seta o código de status, nesse caso foi o 200
+        res.setHeader("Content-Type","text/html"); -> aqui informa o tipo e o que ele aceita, no caso text/html
+        res.end("<h1>Enviando html</h1>"); -> escrevendo o html
+        
+    }).listen(porta,()=>{
+        console.log(`Server rodando na porta: http://localhost:${porta}`);
+    });
+
+
+3- Módulo url
+    Serve para decompor uma url, podendo resgatar vários itens como: host,path,params e etc.
+    Podendo alterar a lógica do código a partir destas informações.
+    
+    const url = require("url");
+    const address = 'http://www.meusite.com.br/catalogo?produtos=cadeira';
+    const parseUrl = new url.URL(address);
+
+    console.log(parseUrl.host);
+    console.log(parseUrl.pathname);
+    console.log(parseUrl.search);
+    console.log(parseUrl.searchParams);
+    console.log(parseUrl.searchParams.get("produtos"));
+
+    SAÍDA  
+    ↓↓↓↓↓
+    www.meusite.com.br
+    /catalogo
+    ?produtos=cadeira
+    URLSearchParams { 'produtos' => 'cadeira' }
+    cadeira

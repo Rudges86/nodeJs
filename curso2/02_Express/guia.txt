@@ -15,7 +15,7 @@ TERCEIRO passo crie um index.js e importe o express.
 
 QUARTO passo crie uma copia do express, que irá carregar todo o express em uma variável, ou seja inicia o express.
 
-    const app = express();
+    const app = express(); -> aqui abre o servidor, é como se fosse o http.createServer
 
 QUINTO passo crie uma rota, neste caso um get.
     Crie um função que sera executada toda vez que a rota for chamada, nela deve ter o parâmetro
@@ -60,3 +60,16 @@ QUINTO passo crie uma rota, neste caso um get.
             console.log("Servidor iniciado ")
         }
     })
+
+    *Observação diferança para o http padrão do node:
+        const http = require("http");
+        const porta = 3000;
+        const server = http.createServer((req,res)=>{
+            res.statusCode = 200;
+            res.setHeader("Content-Type","text/html");
+            res.end("<h1>Enviado </h1>");
+        }).listen(porta,()=>{
+            console.log(`servidor rodando na porta: http://localhost:${porta}`);
+        })
+
+        
