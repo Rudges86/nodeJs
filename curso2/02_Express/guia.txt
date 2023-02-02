@@ -28,19 +28,28 @@ QUINTO passo crie uma rota, neste caso um get.
         
     });
     ***********Rota com parâmetro
-    *app.get("/", function(req,res){
+    *app.get("/parm/:nome", function(req,res){
         res.send("bem-vindo");      -> envia a resposta, * Só pode enviar a resposta uma vez,
                                        se deixar de enviar a rota fica congelada. É a resposta do servidor.
         res.send(req.params.nome)   -> é ele que captura os parâmetros e os dados que o cliente envia.
         
     });
-
+    Acesso http://localhost:4000/parm/rudge
 ****************Rota com mais de um parâmetro
     app.get("/parm/:nome/:empresa",(req,res)=>{
         let nome = req.params.nome;
         let empresa = req.params.empresa;
-        res.send(`<h1>Oi! ${nome} da empresa: ${empresa} </h1>`)
-    })
+        res.send(`<h1>Oi! ${nome} da empresa: ${empresa} </h1>`);
+    });
+    Acesso http://localhost:4000/param/rudge/capg
+
+************ Query params de rotas
+    app.get("/canal/youtube",(req,res)=>{
+        let canal = req.query["canal"];
+        res.send(canal);
+    });
+    Acesso http://localhost:4000/canal/youtube?canal=fulano
+
 
 Último passo crie a inicialização do servidor.
     primeiro parâmetro é a porta que ele ira rodar, o segundo é para caso ele retorne um erro

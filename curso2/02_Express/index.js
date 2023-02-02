@@ -25,7 +25,7 @@ app.get("/parm/:nome/:empresa", (req, res) => {
     let empresa = req.params.empresa;
     res.send(`<h1>Oi! ${nome} da empresa: ${empresa} </h1>`)
 })
-
+//Opcional
 app.get("/bloc/:fulano?",(req,res)=>{
     let teste = res.params.fulano;
     if(teste){
@@ -34,7 +34,16 @@ app.get("/bloc/:fulano?",(req,res)=>{
         res.send("Faltou o parâmetro")
     }
 })
-
+//Queryparams
+app.get("/canal/insta",(req,res)=>{
+    let canal = req.query["canal"];
+    if(canal){
+        res.send(`<h1>Hi, Welcome the insta ${canal}</h1>`)
+    }else{
+        res.send("<h1>Hi, Welcome the insta </h1>")
+    }
+    
+})
 
 app.listen(4000, (erro) => {
     if (erro) {
