@@ -21,11 +21,26 @@ QUINTO passo crie uma rota, neste caso um get.
     Crie um função que sera executada toda vez que a rota for chamada, nela deve ter o parâmetro
     de requisição e resposta
 
-    app.get("/", function(req,res){
+    *app.get("/", function(req,res){
         res.send("bem-vindo"); -> envia a resposta, * Só pode enviar a resposta uma vez,
-                                  se deixar de enviar a rota fica congelada.
+                                  se deixar de enviar a rota fica congelada. É a resposta do servidor.
+                            
         
     });
+    ***********Rota com parâmetro
+    *app.get("/", function(req,res){
+        res.send("bem-vindo");      -> envia a resposta, * Só pode enviar a resposta uma vez,
+                                       se deixar de enviar a rota fica congelada. É a resposta do servidor.
+        res.send(req.params.nome)   -> é ele que captura os parâmetros e os dados que o cliente envia.
+        
+    });
+
+****************Rota com mais de um parâmetro
+    app.get("/parm/:nome/:empresa",(req,res)=>{
+        let nome = req.params.nome;
+        let empresa = req.params.empresa;
+        res.send(`<h1>Oi! ${nome} da empresa: ${empresa} </h1>`)
+    })
 
 Último passo crie a inicialização do servidor.
     primeiro parâmetro é a porta que ele ira rodar, o segundo é para caso ele retorne um erro
