@@ -76,3 +76,55 @@ const server = http.createServer((req,res)=>{
 })
 
 
+5 → Lendo um documento html por fs e renderizando.
+
+    const fs = require("fs"); → importe do fs;
+    const http = require("http"); → Importe do http;
+
+    const porta = 3000; → Porta
+    const server = http.createServer((req,res)=>{ 
+        //Lê o arquivo html
+        fs.readFile("mensagem.html",(error,data)=>{
+            //Substitui o res.statusCode e o res.setHeader       
+            res.writeHead(200,{"Content-Type": "text/html"});
+            //Vai escrever o que está no arquivo ai
+            res.write(data);
+            return res.end();
+            
+        });
+
+    }).listen(porta,()=>{
+        console.log(`Servidor rodando na porta: http://localhost:${porta}`);
+    })
+
+    6 → Lendo e escrevendo em arquivo via html
+        const fs = require("fs");
+        const http =  require("http");
+        const porta = 3000;
+
+        const server = http.createServer((req,res)=>{
+
+        const urlInfo = require("url").parse(req.url,true); //importe da url, e lendo a url
+        const nome = urlInfo.query.nome; //lendo o parâmetro
+
+        if(!nome){
+            fs.readFile("index.html",(error,data)=>{
+                res.writeHead(200,{"Content-Type":"text/html"}) //renderizando o html já criado
+                res.write(data);
+                return res.end();
+                })
+        }else{
+            fs.writeFile("arquivo.txt",nome, function (err,data){ //criando e escrevendo no arquivo.txt
+                //Detalhe, toda vez ele irá substituir o arquivo e escrever por cima.
+                //Detalhe ele não aceita arrow function, tem que passar o nome function mesmo
+                res.writeHead(302,{
+                    Location:"/" //devolvendo para a mesma página
+                })
+                    return res.end();
+                })
+            }
+
+        }).listen(porta,()=>{
+        console.log(`Servidor rodando em: http://localhost:${porta}`);
+    })
+
